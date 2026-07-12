@@ -1,0 +1,6 @@
+{
+  "name": "Centro de Estética y Belleza",
+  "description": "Landing page para un centro de belleza y estética con servicios, precios, turnos y contacto por WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,13 +1,1536 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Estética & Bienestar | Turnos Online</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pink: {
+              50: '#fff5f6',
+              100: '#ffebe2',
+              200: '#ffd3db',
+              300: '#fba5b5',
+              400: '#f46c85',
+              500: '#e54360',
+              600: '#ca2243',
+              700: '#9d142e',
+              800: '#7d1227',
+              900: '#641221',
+            },
+            'custom-pink': '#fff9f8',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background-color: #fffaf9;
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(251, 165, 181, 0.25);
+    }
+    .service-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -10px rgba(229, 67, 96, 0.15);
+      border-color: rgba(251, 165, 181, 0.5);
+    }
+    .btn-whatsapp-custom {
+      background-color: #25D366;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-whatsapp-custom:hover {
+      background-color: #128C7E;
+      transform: translateY(-1px);
+    }
+    /* Simple scale animation */
+    .scale-enter {
+      animation: scaleUp 0.2s ease-out forwards;
+    }
+    @keyframes scaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="font-sans text-neutral-800 antialiased overflow-x-hidden selection:bg-pink-200 selection:text-pink-900">
+
+  <!-- TOP BAR / NOTIFICATION -->
+  <div class="bg-pink-500 text-white py-2 px-4 text-center text-xs font-semibold tracking-wider">
+    ✨ ¡10% de descuento abonando en efectivo en el local! ✨
+  </div>
+
+  <!-- STICKY HEADER -->
+  <header class="sticky top-0 z-50 glass-panel border-b border-pink-100/30 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 shadow-sm group-hover:scale-105 transition-transform">
+          <!-- Sparkles Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21L8.188 15.904L3 15L8.188 14.096L9 9L9.813 14.096L15 15L9.813 15.904Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.071 4.929a10 10 0 00-14.142 0M12 3v1m0 16v1m9-9h-1M4 12H3" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-sans text-lg sm:text-xl font-light tracking-tight text-neutral-800 block leading-tight">Aura</span>
+          <span class="text-[9px] sm:text-[10px] tracking-widest uppercase text-pink-500 font-bold block">Estética & Bienestar</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-8 text-xs sm:text-sm font-medium text-neutral-600">
+        <a href="#inicio" class="hover:text-pink-500 transition-colors">Inicio</a>
+        <a href="#servicios" class="hover:text-pink-500 transition-colors">Tratamientos</a>
+        <a href="#turnos" class="hover:text-pink-500 transition-colors">Solicitar Turno</a>
+        <a href="#opiniones" class="hover:text-pink-500 transition-colors">Opiniones</a>
+        <a href="#faqs" class="hover:text-pink-500 transition-colors">Preguntas Frecuentes</a>
+      </nav>
+
+      <!-- CTA Button Header -->
+      <div class="flex items-center gap-3">
+        <a href="#turnos" class="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-pink-500 hover:bg-pink-600 text-white text-xs font-semibold shadow-md shadow-pink-100 hover:shadow-lg transition-all cursor-pointer">
+          Reservar Online
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="inicio" class="relative pt-10 pb-20 sm:py-24 overflow-hidden bg-gradient-to-b from-pink-50/40 via-transparent to-transparent">
+    
+    <!-- Background blurred ambient bubbles -->
+    <div class="absolute top-1/4 -left-36 w-72 h-72 rounded-full bg-pink-200/20 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-80 h-80 rounded-full bg-pink-300/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text Column -->
+        <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 bg-pink-50 px-4 py-1.5 rounded-full border border-pink-100/60 text-pink-600 text-xs font-bold uppercase tracking-wider">
+            <span>✨ El bienestar que tu cuerpo merece</span>
+          </div>
+
+          <h1 class="font-sans text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-neutral-800 leading-[1.1]">
+            Tu momento de <span class="font-normal text-pink-500">paz, bienestar</span> y renovación
+          </h1>
+
+          <p class="text-sm sm:text-base text-neutral-500 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+            Ofrecemos tratamientos estéticos de alta gama con atención personalizada en Palermo. 
+            Redefiní el cuidado de tu piel y cuerpo en un espacio diseñado exclusivamente para tu tranquilidad.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#turnos" class="w-full sm:w-auto px-8 py-4 rounded-full bg-pink-500 hover:bg-pink-600 text-white font-semibold text-xs uppercase tracking-widest text-center shadow-lg shadow-pink-100/50 hover:shadow-xl transition-all cursor-pointer">
+              Agendar Turno Online
+            </a>
+            <a href="https://wa.me/5491121571015?text=Hola%20Aura!%20Me%20contacto%20desde%20la%20web.%20Me%20gustaría%20consultar%20sobre%20sus%20tratamientos." target="_blank" rel="noreferrer" class="w-full sm:w-auto btn-whatsapp-custom px-8 py-4 rounded-full text-white font-semibold text-xs uppercase tracking-widest text-center shadow-md flex items-center justify-center gap-2 cursor-pointer">
+              <!-- Whatsapp SVG -->
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 1.975 14.069.951 11.48.951c-5.44 0-9.866 4.369-9.87 9.799-.001 1.77.475 3.497 1.38 5.02L1.97 21.55l5.882-1.528c1.558.847 3.2 1.292 4.795 1.292z"/>
+              </svg>
+              Consultar por WhatsApp
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Image Column -->
+        <div class="lg:col-span-5 relative mt-6 lg:mt-0 flex justify-center">
+          <div class="relative w-full max-w-sm sm:max-w-md aspect-square rounded-[40px] overflow-hidden shadow-2xl border-4 border-white/80">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" alt="Spa Salon" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-900/10 to-transparent"></div>
+          </div>
+          <!-- Tiny floating card -->
+          <div class="absolute -bottom-6 -right-2 sm:right-6 glass-panel rounded-2xl p-4 shadow-xl max-w-xs border border-pink-100 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-neutral-800">Atención Personalizada</p>
+              <p class="text-[10px] text-neutral-400">Palermo, CABA. Lunes a Sábados.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES / TRUST SECTION -->
+  <section class="py-12 bg-white border-y border-pink-100/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        
+        <!-- Value 1 -->
+        <div class="flex flex-col items-center p-4">
+          <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-pink-500 mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h3 class="text-sm font-semibold text-neutral-800 uppercase tracking-wider mb-1">Atención 1 a 1</h3>
+          <p class="text-xs text-neutral-400 font-light">Diagnósticos minuciosos y tratamientos enfocados 100% en tus necesidades.</p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="flex flex-col items-center p-4">
+          <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-pink-500 mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-sm font-semibold text-neutral-800 uppercase tracking-wider mb-1">Materiales Premium</h3>
+          <p class="text-xs text-neutral-400 font-light">Utilizamos aparatología de última generación y principios activos de alta gama cosmética.</p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="flex flex-col items-center p-4">
+          <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-pink-500 mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12H4.125a2.125 2.125 0 00-2.125 2.125c0 1.173.952 2.125 2.125 2.125h4.125m11.25-4.25H20.125a2.125 2.125 0 012.125 2.125c0 1.173-.952 2.125-2.125 2.125h-4.125m-6.75-8.5V2.125C9.25 1.503 9.753 1 10.375 1h3.25C14.247 1 14.75 1.503 14.75 2.125v4.25M9.25 15.5v5.375C9.25 21.497 9.753 22 10.375 22h3.25c.622 0 1.125-.503 1.125-1.125V15.5m-6.75-8.5H16.25M12 7v8.5" />
+            </svg>
+          </div>
+          <h3 class="text-sm font-semibold text-neutral-800 uppercase tracking-wider mb-1">Profesionales Certificadas</h3>
+          <p class="text-xs text-neutral-400 font-light">Especialistas universitarias en constante capacitación para cuidar tu salud estética.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="servicios" class="py-20 bg-custom-pink relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-pink-600 block">Nuestra Carta de Tratamientos</span>
+        <h2 class="font-sans text-3xl sm:text-4xl font-light tracking-tight text-neutral-800">Servicios Diseñados para Consentirte</h2>
+        <div class="w-16 h-0.5 bg-pink-300 mx-auto mt-2 rounded-full"></div>
+        <p class="text-neutral-500 text-sm sm:text-base mt-2 font-light">
+          Explorá nuestra variedad de opciones estéticas con precios transparentes y duraciones exactas. 
+          Seleccioná el servicio que deseas para precargar el formulario de turnos de manera directa.
+        </p>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10 max-w-3xl mx-auto" id="categories-container">
+        <!-- Will be dynamically generated but here are placeholders for beautiful initial layout -->
+        <button onclick="filterCategory('todos')" class="category-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer bg-pink-500 text-white border-pink-500 shadow-md">Todos los Servicios</button>
+        <button onclick="filterCategory('facial')" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer bg-white text-neutral-700 border-pink-100 hover:border-pink-300 hover:bg-pink-50/20">Facial</button>
+        <button onclick="filterCategory('corporal')" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer bg-white text-neutral-700 border-pink-100 hover:border-pink-300 hover:bg-pink-50/20">Corporal</button>
+        <button onclick="filterCategory('manicuría')" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer bg-white text-neutral-700 border-pink-100 hover:border-pink-300 hover:bg-pink-50/20">Manicuría</button>
+        <button onclick="filterCategory('pestañas')" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer bg-white text-neutral-700 border-pink-100 hover:border-pink-300 hover:bg-pink-50/20">Pestañas & Cejas</button>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-grid">
+        <!-- Dynamically Populated by Javascript to enable instant filtering -->
+      </div>
+
+      <!-- Custom Info / Advice Box -->
+      <div class="mt-12 glass-panel rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 text-center md:text-left">
+          <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 shrink-0 hidden sm:flex">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-sans text-lg font-medium text-neutral-900">¿Querés un tratamiento a medida?</h4>
+            <p class="text-sm text-neutral-500 mt-0.5 font-light">Ofrecemos diagnósticos y asesoramientos personalizados sin costo vía WhatsApp.</p>
+          </div>
+        </div>
+        <a href="https://wa.me/5491121571015?text=Hola%20Aura!%20Me%20gustaría%20solicitar%20un%20asesoramiento%20personalizado%20para%20un%20tratamiento%20a%20medida." target="_blank" rel="noreferrer" class="btn-whatsapp-custom text-white font-semibold text-xs py-3.5 px-6 rounded-full shadow-md flex items-center gap-2 cursor-pointer">
+          Consultar por WhatsApp
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- APPOINTMENT SECTION & HISTORY -->
+  <section id="turnos" class="py-20 bg-custom-pink border-t border-pink-100 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Booking Form Card (7 cols) -->
+        <div class="lg:col-span-7 glass-panel p-6 sm:p-10 rounded-[32px] shadow-sm">
+          
+          <div class="space-y-3 mb-8">
+            <span class="text-xs uppercase font-bold tracking-widest text-pink-600 block">Agenda en unos clics</span>
+            <h2 class="font-sans text-2xl sm:text-3xl font-light tracking-tight text-neutral-800">Solicitá tu Turno Online</h2>
+            <p class="text-sm text-neutral-500 font-light leading-relaxed">
+              Completá tus datos, seleccioná el tratamiento y elegí el día de tu conveniencia. 
+              Una vez finalizado, podrás enviar la solicitud directamente a nuestro WhatsApp para confirmarlo al instante.
+            </p>
+          </div>
+
+          <form id="appointment-form" class="space-y-6">
+            
+            <!-- Name & Phone -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label for="clientName" class="text-xs font-medium text-neutral-600 uppercase tracking-wider block">
+                  Nombre Completo <span class="text-pink-500">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="clientName"
+                  required
+                  placeholder="Ej. María Pérez" 
+                  class="w-full px-4 py-3.5 rounded-2xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent text-sm text-neutral-800 placeholder-neutral-400 font-light"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label for="clientPhone" class="text-xs font-medium text-neutral-600 uppercase tracking-wider block">
+                  Teléfono / WhatsApp <span class="text-pink-500">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="clientPhone"
+                  required
+                  placeholder="Ej. 11 2157-1015" 
+                  class="w-full px-4 py-3.5 rounded-2xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent text-sm text-neutral-800 placeholder-neutral-400 font-light"
+                />
+                <span class="text-[10px] text-neutral-400 block mt-0.5">Ingresá tu número con código de área (sin el 0 ni el 15)</span>
+              </div>
+            </div>
+
+            <!-- Service Select & Date -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label for="serviceId" class="text-xs font-medium text-neutral-600 uppercase tracking-wider block">
+                  Tratamiento Deseado <span class="text-pink-500">*</span>
+                </label>
+                <select 
+                  id="serviceId"
+                  required
+                  class="w-full px-4 py-3.5 rounded-2xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent text-sm text-neutral-800 bg-white font-light"
+                >
+                  <!-- Populated by JavaScript -->
+                </select>
+              </div>
+
+              <div class="space-y-2">
+                <label for="date" class="text-xs font-medium text-neutral-600 uppercase tracking-wider block">
+                  Fecha <span class="text-pink-500">*</span>
+                </label>
+                <input 
+                  type="date" 
+                  id="date"
+                  required
+                  class="w-full px-4 py-3.5 rounded-2xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent text-sm text-neutral-800 placeholder-neutral-400 font-light"
+                />
+              </div>
+            </div>
+
+            <!-- Time Slot Picker -->
+            <div class="space-y-3">
+              <label class="text-xs font-medium text-neutral-600 uppercase tracking-wider block">
+                Horario Preferido <span class="text-pink-500">*</span>
+              </label>
+              
+              <div class="grid grid-cols-4 sm:grid-cols-7 gap-2.5" id="time-slots-container">
+                <!-- Buttons populated dynamically -->
+              </div>
+              <input type="hidden" id="selected-time" required />
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="space-y-2">
+              <label for="notes" class="text-xs font-medium text-neutral-600 uppercase tracking-wider block">
+                Notas o Consultas Adicionales <span class="text-neutral-400">(Opcional)</span>
+              </label>
+              <textarea 
+                id="notes"
+                placeholder="Ej: Tengo piel sensible / Es para regalo de cumpleaños / Necesito retirar esmalte previo"
+                class="w-full px-4 py-3.5 rounded-2xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent text-sm text-neutral-800 placeholder-neutral-400 font-light"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 rounded-2xl shadow-md hover:-translate-y-0.5 transition-all text-sm uppercase tracking-widest cursor-pointer flex items-center justify-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Solicitar Turno y Confirmar por WhatsApp
+            </button>
+
+            <p class="text-[10px] text-center text-neutral-400 leading-normal">
+              * El envío de este formulario abre un chat de WhatsApp con la información pre-cargada. No realizamos cobros en la web, el pago se efectúa en el local el día del tratamiento.
+            </p>
+
+          </form>
+        </div>
+
+        <!-- Sidebar Info & History (5 cols) -->
+        <div class="lg:col-span-5 space-y-8">
+          
+          <!-- Contact Info Box -->
+          <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-xs space-y-6">
+            <h3 class="font-sans text-xl font-semibold text-neutral-900 border-b border-pink-100/30 pb-3 flex items-center gap-2">
+              <svg class="w-5 h-5 text-pink-500 fill-current" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg> 
+              Datos de Contacto
+            </h3>
+            
+            <ul class="space-y-4 text-sm text-neutral-600">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-pink-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <span class="font-semibold block text-neutral-900">Ubicación</span>
+                  <span class="font-light" id="business-address">Av. Santa Fe 3400, Palermo, CABA</span>
+                </div>
+              </li>
+              
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-pink-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <div>
+                  <span class="font-semibold block text-neutral-900">Teléfono</span>
+                  <span class="font-light" id="business-phone">11 2157-1015</span>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-pink-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <span class="font-semibold block text-neutral-900">Horarios de Atención</span>
+                  <p class="text-xs font-light">Lunes a Viernes: 09:00 a 20:00 hs</p>
+                  <p class="text-xs font-light mt-0.5">Sábados: 09:00 a 17:00 hs</p>
+                  <p class="text-xs text-pink-600 font-semibold mt-0.5">Domingos: Cerrado</p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="bg-pink-50/50 p-4 rounded-2xl border border-pink-100/30 text-xs flex items-center justify-between">
+              <span class="text-neutral-500">¿Dudas? Chatea con nosotros</span>
+              <a 
+                href="https://wa.me/5491121571015?text=Hola%20Aura!%20Tengo%20algunas%20dudas%20y%20me%20gustaría%20consultar."
+                target="_blank" 
+                rel="noreferrer"
+                class="font-bold text-pink-600 hover:text-pink-700 flex items-center gap-1"
+              >
+                Abrir Chat 
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turnos Recientes (Persistent History) -->
+          <div class="glass-panel p-6 rounded-3xl shadow-xs">
+            <div class="flex items-center justify-between border-b border-pink-100/30 pb-3 mb-4">
+              <h3 class="font-sans text-lg font-semibold text-neutral-900 flex items-center gap-2">
+                <svg class="w-4.5 h-4.5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+                Tus Turnos Recientes
+              </h3>
+              <span id="appointment-count-badge" class="px-2 py-0.5 bg-pink-100 text-pink-700 text-[10px] font-bold rounded-full hidden">
+                0
+              </span>
+            </div>
+
+            <!-- List Container -->
+            <div id="appointments-history-list" class="space-y-3">
+              <!-- Rendered by Javascript -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="opiniones" class="py-20 bg-custom-pink relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-pink-600">Lo que dicen nuestras clientas</span>
+        <h2 class="font-sans text-3xl sm:text-4xl font-light tracking-tight text-neutral-800">Testimonios Reales de Experiencias Aura</h2>
+        <div class="w-12 h-0.5 bg-pink-300 mx-auto mt-2 rounded-full"></div>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" id="reviews-grid">
+        <!-- Loaded by JS -->
+      </div>
+
+      <!-- Add Review Section -->
+      <div class="max-w-xl mx-auto">
+        <div class="text-center" id="add-review-btn-container">
+          <button
+            onclick="toggleAddReviewForm(true)"
+            class="bg-white hover:bg-pink-50 text-pink-600 border border-pink-100 font-bold text-xs py-3.5 px-6 rounded-full cursor-pointer transition-all hover:shadow-xs"
+          >
+            Dejar mi propia opinión
+          </button>
+        </div>
+
+        <!-- Form Collapsible Container -->
+        <div id="add-review-form-container" class="hidden scale-enter">
+          <form id="review-form" class="glass-panel rounded-3xl p-6 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-pink-100 pb-2">
+              <h4 class="font-sans text-sm font-medium text-neutral-900">Escribir mi Reseña</h4>
+              <button 
+                type="button" 
+                onclick="toggleAddReviewForm(false)"
+                class="text-neutral-400 hover:text-neutral-600 cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label for="reviewAuthor" class="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Nombre</label>
+                <input 
+                  type="text" 
+                  id="reviewAuthor"
+                  required
+                  placeholder="Tu nombre"
+                  class="w-full px-3 py-2 text-xs rounded-xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-1 focus:ring-pink-300 text-neutral-800 placeholder-neutral-400 font-light"
+                />
+              </div>
+
+              <div class="space-y-1">
+                <label for="reviewRating" class="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Puntaje</label>
+                <select 
+                  id="reviewRating"
+                  class="w-full px-3 py-2 text-xs rounded-xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-1 focus:ring-pink-300 text-neutral-800 bg-white font-light"
+                >
+                  <option value="5">5 Estrellas (Excelente)</option>
+                  <option value="4">4 Estrellas (Muy Bueno)</option>
+                  <option value="3">3 Estrellas (Bueno)</option>
+                  <option value="2">2 Estrellas (Regular)</option>
+                  <option value="1">1 Estrella (Malo)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label for="reviewText" class="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Comentario</label>
+              <textarea 
+                id="reviewText"
+                rows="3"
+                required
+                placeholder="Compartí tu experiencia en Aura..."
+                class="w-full px-3 py-2 text-xs rounded-xl bg-pink-50/70 border border-pink-100/50 focus:outline-none focus:ring-1 focus:ring-pink-300 text-neutral-800 placeholder-neutral-400 font-light"
+              ></textarea>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-2 border-t border-pink-100/30">
+              <button
+                type="button"
+                onclick="toggleAddReviewForm(false)"
+                class="px-3 py-2 text-[11px] rounded-lg border border-neutral-200 text-neutral-500 hover:bg-neutral-50 cursor-pointer"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                class="bg-pink-500 text-white px-4 py-2 text-[11px] font-bold rounded-lg hover:bg-pink-600 transition-colors cursor-pointer"
+              >
+                Publicar Reseña
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQS SECTION -->
+  <section id="faqs" class="py-20 bg-white border-t border-pink-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-12 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-pink-600">Preguntas Frecuentes</span>
+        <h2 class="font-sans text-3xl sm:text-4xl font-light tracking-tight text-neutral-800">Resolvé tus Dudas al Instante</h2>
+        <div class="w-12 h-0.5 bg-pink-300 mx-auto mt-2 rounded-full"></div>
+      </div>
+
+      <!-- FAQ Accordions Container -->
+      <div class="space-y-4" id="faqs-container">
+        <!-- Loaded by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-neutral-900 text-neutral-400 py-16 border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-neutral-800">
+        
+        <!-- Brand / Identity -->
+        <div class="md:col-span-4 space-y-4 text-center md:text-left">
+          <div class="flex items-center gap-2 justify-center md:justify-start">
+            <div class="w-9 h-9 rounded-full bg-neutral-800 flex items-center justify-center border border-neutral-700">
+              <svg class="w-4.5 h-4.5 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21L8.188 15.904L3 15L8.188 14.096L9 9L9.813 14.096L15 15L9.813 15.904Z" />
+              </svg>
+            </div>
+            <div>
+              <span class="font-sans text-lg font-light tracking-tight text-white block">Aura</span>
+              <span class="text-[9px] tracking-widest uppercase text-pink-400 font-semibold block">Estética & Bienestar</span>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-400 leading-relaxed max-w-sm mx-auto md:mx-0 font-light">
+            Ofrecemos tratamientos de alta gama y atención de excelencia para redefinir el cuidado de tu piel y cuerpo. Disfrutá de un momento solo para vos.
+          </p>
+          <div class="pt-2 flex justify-center md:justify-start">
+            <a 
+              href="https://instagram.com/aura.esteticabienestar" 
+              target="_blank" 
+              rel="noreferrer"
+              class="flex items-center gap-1.5 text-xs font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+            >
+              <!-- Instagram SVG -->
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+              <span>@aura.esteticabienestar</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Treatments Quick Links -->
+        <div class="md:col-span-3 space-y-4 text-center md:text-left">
+          <h4 class="font-sans text-sm font-semibold text-white uppercase tracking-wider">Tratamientos</h4>
+          <ul class="space-y-2 text-xs text-neutral-400 font-light">
+            <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Limpieza Facial Profunda</a></li>
+            <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Drenaje Linfático</a></li>
+            <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Kapping Gel & Uñas</a></li>
+            <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Lifting & Extensión Pestañas</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Address -->
+        <div class="md:col-span-5 space-y-4 text-center md:text-left">
+          <h4 class="font-sans text-sm font-semibold text-white uppercase tracking-wider">Ubicación & Contacto</h4>
+          
+          <ul class="space-y-3.5 text-xs text-neutral-400 font-light">
+            <li class="flex items-start gap-2.5 justify-center md:justify-start">
+              <svg class="w-4 h-4 text-pink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Av. Santa Fe 3400, Palermo, CABA</span>
+            </li>
+
+            <li class="flex items-start gap-2.5 justify-center md:justify-start">
+              <svg class="w-4 h-4 text-pink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <a href="tel:1121571015" class="hover:text-white transition-colors">
+                Tel: 11 2157-1015 (Línea Directa)
+              </a>
+            </li>
+
+            <li class="flex items-start gap-2.5 justify-center md:justify-start">
+              <svg class="w-4 h-4 text-pink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <span class="block">Lunes a Viernes: 09:00 a 20:00 hs</span>
+                <span class="block mt-0.5">Sábados: 09:00 a 17:00 hs</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-500 gap-4">
+        <p>© 2026 Aura Estética & Bienestar. Todos los derechos reservados.</p>
+        <div class="flex gap-4">
+          <span>Palermo, Ciudad Autónoma de Buenos Aires</span>
+          <span>•</span>
+          <a href="#turnos" class="hover:text-pink-400 transition-colors">Reservar Turno</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BADGE -->
+  <a 
+    href="https://wa.me/5491121571015?text=Hola%20Aura!%20Me%20contacto%20desde%20la%20web.%20Me%20gustaría%20consultar%20sobre%20sus%20tratamientos."
+    target="_blank"
+    rel="noreferrer"
+    class="fixed bottom-6 right-6 z-40 w-14 h-14 btn-whatsapp-custom rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all text-white animate-bounce pointer-events-auto cursor-pointer"
+    style="animation-duration: 3s"
+    title="Consultar por WhatsApp"
+  >
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 1.975 14.069.951 11.48.951c-5.44 0-9.866 4.369-9.87 9.799-.001 1.77.475 3.497 1.38 5.02L1.97 21.55l5.882-1.528c1.558.847 3.2 1.292 4.795 1.292z"/>
+    </svg>
+  </a>
+
+  <!-- APPOINTMENT CONFIRMATION MODAL DIALOG -->
+  <div id="modal-container" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div class="relative transform overflow-hidden rounded-[32px] bg-white px-6 pt-8 pb-7 text-left shadow-2xl transition-all w-full max-w-lg border border-pink-100/40 scale-enter my-8">
+        
+        <!-- Close Button -->
+        <button
+          onclick="closeModal()"
+          class="absolute top-5 right-5 text-neutral-400 hover:text-neutral-600 p-1.5 rounded-full hover:bg-neutral-50 transition-colors cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="space-y-6">
+          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-100 text-pink-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+
+          <div class="text-center space-y-1">
+            <h3 class="font-sans text-2xl font-light tracking-tight text-neutral-800" id="modal-title">
+              ¡Solicitud Pre-Registrada!
+            </h3>
+            <p class="text-xs text-neutral-500 font-medium">
+              Tu turno se guardó en tu historial local. Para confirmarlo de forma definitiva, hacé clic en el botón verde y envianos el mensaje a nuestro chat.
+            </p>
+          </div>
+
+          <!-- Summary card -->
+          <div class="bg-pink-50/30 rounded-2xl p-5 border border-pink-100/30 space-y-3.5 text-xs text-neutral-700">
+            <div class="flex items-center justify-between border-b border-pink-100/30 pb-2">
+              <span class="font-bold text-neutral-500 uppercase tracking-wide">Tratamiento</span>
+              <span class="font-bold text-neutral-900" id="modal-service">Limpieza Facial Profunda</span>
+            </div>
+            
+            <div class="flex items-center justify-between border-b border-pink-100/30 pb-2">
+              <span class="font-bold text-neutral-500 uppercase tracking-wide">Cliente</span>
+              <span class="font-semibold text-neutral-900" id="modal-name">María Pérez</span>
+            </div>
+            
+            <div class="flex items-center justify-between border-b border-pink-100/30 pb-2">
+              <span class="font-bold text-neutral-500 uppercase tracking-wide">Fecha & Hora</span>
+              <span class="font-semibold text-pink-600" id="modal-datetime">12/07/2026 a las 10:30 hs</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-neutral-500 uppercase tracking-wide font-sans">Valor</span>
+              <span class="font-sans font-medium text-sm text-neutral-950" id="modal-price">$18.500</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2.5">
+            <a 
+              id="modal-whatsapp-btn"
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+              onclick="closeModal()"
+              class="w-full btn-whatsapp-custom text-white font-bold py-3.5 rounded-2xl shadow-md transition-all text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 1.975 14.069.951 11.48.951c-5.44 0-9.866 4.369-9.87 9.799-.001 1.77.475 3.497 1.38 5.02L1.97 21.55l5.882-1.528c1.558.847 3.2 1.292 4.795 1.292z"/>
+              </svg>
+              Confirmar y Enviar por WhatsApp
+            </a>
+            
+            <button
+              type="button"
+              onclick="closeModal()"
+              class="w-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold py-3 rounded-2xl transition-all text-xs uppercase cursor-pointer"
+            >
+              Hacerlo más tarde
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT PROGRAMMING -->
+  <script>
+    // 1. DATA STORES
+    const BUSINESS_INFO = {
+      name: 'Aura Estética & Bienestar',
+      phone: '5491121571015', // formatted for whatsapp
+      phoneDisplay: '11 2157-1015',
+      address: 'Av. Santa Fe 3400, Palermo, CABA',
+    };
+
+    const SERVICES = [
+      // FACIALES
+      {
+        id: 'f1',
+        name: 'Limpieza Facial Profunda',
+        description: 'Exfoliación, extracciones minuciosas, altafrecuencia descongestiva y máscara nutritiva de fango o colágeno para renovar tu piel.',
+        price: 18500,
+        duration: '60 min',
+        category: 'facial',
+      },
+      {
+        id: 'f2',
+        name: 'Peeling Químico / Renovación',
+        description: 'Tratamiento exfoliante y renovador que combate manchas superficiales, marcas de acné, poros dilatados y líneas de expresión.',
+        price: 22000,
+        duration: '45 min',
+        category: 'facial',
+      },
+      {
+        id: 'f3',
+        name: 'Shock de Ácido Hialurónico',
+        description: 'Tratamiento de hidratación extrema que rellena líneas finas, restaura la turgencia cutánea y otorga un efecto glow instantáneo.',
+        price: 25000,
+        duration: '50 min',
+        category: 'facial',
+      },
+      // CORPORALES
+      {
+        id: 'c1',
+        name: 'Masaje Reductor & Modelador',
+        description: 'Masajes intensos enfocados en remover adiposidad localizada, drenar y perfilar la silueta mediante técnicas manuales.',
+        price: 24000,
+        duration: '50 min',
+        category: 'corporal',
+      },
+      {
+        id: 'c2',
+        name: 'Drenaje Linfático Manual',
+        description: 'Técnica suave y descongestiva ideal para piernas cansadas, retención de líquidos, embarazo o recuperación post-quirúrgica.',
+        price: 26500,
+        duration: '60 min',
+        category: 'corporal',
+      },
+      {
+        id: 'c3',
+        name: 'Presoterapia Secuencial',
+        description: 'Tratamiento mecánico con botas de compresión de aire para activar el retorno venoso, deshinchar y combatir la celulitis.',
+        price: 15000,
+        duration: '40 min',
+        category: 'corporal',
+      },
+      // MANICURÍA
+      {
+        id: 'm1',
+        name: 'Kapping Gel + Semipermanente',
+        description: 'Capa protectora de gel sobre tu uña natural para evitar quiebres y favorecer el crecimiento. Incluye esmaltado y diseño simple.',
+        price: 14500,
+        duration: '75 min',
+        category: 'manicuría',
+      },
+      {
+        id: 'm2',
+        name: 'Uñas Esculpidas en Gel',
+        description: 'Extensión y esculpido de uñas con gel premium para un largo y forma soñados con un acabado natural, resistente y ultrabrillante.',
+        price: 19500,
+        duration: '90 min',
+        category: 'manicuría',
+      },
+      {
+        id: 'm3',
+        name: 'Esmaltado Semipermanente',
+        description: 'Limpieza profunda de cutículas, limado anatómico, esmaltado del color que elijas de nuestra paleta y nutrición final.',
+        price: 10500,
+        duration: '45 min',
+        category: 'manicuría',
+      },
+      // PESTAÑAS Y CEJAS
+      {
+        id: 'p1',
+        name: 'Lifting de Pestañas + Nutrición',
+        description: 'Arqueado semipermanente de tus pestañas naturales desde la raíz, haciéndolas parecer más largas y curvas. Incluye tinte y queratina.',
+        price: 13500,
+        duration: '60 min',
+        category: 'pestañas',
+      },
+      {
+        id: 'p2',
+        name: 'Extensión de Pestañas Pelo a Pelo',
+        description: 'Técnica clásica donde aplicamos una extensión de seda sobre cada una de tus pestañas para lucir una mirada más expresiva y tupida.',
+        price: 19000,
+        duration: '90 min',
+        category: 'pestañas',
+      },
+      {
+        id: 'p3',
+        name: 'Perfilado de Cejas + Henna',
+        description: 'Diseño personalizado según tu morfología facial con pinza e hilo, sumado a un sombreado natural con henna biodegradable.',
+        price: 9500,
+        duration: '45 min',
+        category: 'pestañas',
+      },
+    ];
+
+    const TESTIMONIALS = [
+      {
+        id: 'r1',
+        author: 'Camila Rodriguez',
+        rating: 5,
+        text: 'La atención es maravillosa. Me hice el Shock de Ácido Hialurónico y salí con la piel súper hidratada y un brillo espectacular. Las chicas son muy amables y el espacio transmite muchísima paz.',
+        date: 'Hace 1 semana',
+      },
+      {
+        id: 'r2',
+        author: 'Sofía Martínez',
+        rating: 5,
+        text: 'Mi lugar favorito en Palermo. El lifting de pestañas dura un montón y el kapping de uñas me queda impecable siempre. Las recomiendo al 100%. El café de cortesía es un detalle hermoso.',
+        date: 'Hace 3 semanas',
+      },
+      {
+        id: 'r3',
+        author: 'Valeria Gómez',
+        rating: 5,
+        text: 'Fui por dolores de retención de líquidos y el drenaje linfático me cambió las piernas. El lugar es sumamente limpio, blanco, rosa y perfumado. Un mimo al alma.',
+        date: 'Hace 1 mes',
+      },
+    ];
+
+    const FAQS = [
+      {
+        question: '¿Con cuánta anticipación debo pedir un turno?',
+        answer: 'Te recomendamos solicitar tu turno con 48 a 72 horas de anticipación, especialmente para horarios vespertinos o sábados, que suelen tener mayor demanda.',
+      },
+      {
+        question: '¿Cómo funciona la confirmación del turno?',
+        answer: 'Al completar el formulario web, tus datos se guardan en tu registro histórico y se genera un mensaje de WhatsApp directo. Al enviarlo por chat, te confirmamos el horario exacto de inmediato.',
+      },
+      {
+        question: '¿Qué formas de pago aceptan?',
+        answer: 'Aceptamos pagos en efectivo (con un 10% de descuento de cortesía), transferencia bancaria, Mercado Pago y tarjetas de débito/crédito.',
+      },
+      {
+        question: '¿Tienen estacionamiento o acceso fácil?',
+        answer: 'Sí, estamos a solo tres cuadras de la estación de Subte D (Scalabrini Ortiz) y pasan numerosas líneas de colectivo. Hay varios estacionamientos comerciales en la misma cuadra.',
+      },
+    ];
+
+    const TIME_SLOTS = ['09:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00'];
+
+    // STATE VARIABLES
+    let currentCategory = 'todos';
+    let selectedTimeSlot = '10:30'; // default slot
+    let appointments = [];
+    let customReviews = [];
+
+    // 2. RUN INIT ON PAGE LOAD
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set static display info
+      document.getElementById('business-address').innerText = BUSINESS_INFO.address;
+      document.getElementById('business-phone').innerText = BUSINESS_INFO.phoneDisplay;
+
+      // Setup inputs
+      const dateInput = document.getElementById('date');
+      const todayStr = getTodayDateString();
+      dateInput.min = todayStr;
+      dateInput.value = todayStr;
+
+      // Load data from localStorage
+      loadLocalStorageData();
+
+      // Render Dynamic UI
+      renderServices();
+      populateServicesDropdown();
+      renderTimeSlots();
+      renderAppointments();
+      renderReviews();
+      renderFaqs();
+    });
+
+    // Helper: get ISO YYYY-MM-DD
+    function getTodayDateString() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    // Helper: format Date string for display (e.g. 15/07/2026)
+    function formatDateDisplay(dateStr) {
+      if (!dateStr) return '';
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+      }
+      return dateStr;
+    }
+
+    // Local Storage loaders
+    function loadLocalStorageData() {
+      try {
+        const apts = localStorage.getItem('aura_appointments');
+        if (apts) appointments = JSON.parse(apts);
+
+        const revs = localStorage.getItem('aura_custom_reviews');
+        if (revs) customReviews = JSON.parse(revs);
+      } catch (e) {
+        console.error('LocalStorage error:', e);
+      }
+    }
+
+    function saveAppointmentsToStorage() {
+      try {
+        localStorage.setItem('aura_appointments', JSON.stringify(appointments));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function saveReviewsToStorage() {
+      try {
+        localStorage.setItem('aura_custom_reviews', JSON.stringify(customReviews));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // 3. UI RENDERING METHODS
+
+    // Categories filter toggler
+    function filterCategory(catId) {
+      currentCategory = catId;
+      
+      // Update buttons style
+      const btns = document.querySelectorAll('.category-btn');
+      btns.forEach(btn => {
+        btn.classList.remove('bg-pink-500', 'text-white', 'border-pink-500', 'shadow-md');
+        btn.classList.add('bg-white', 'text-neutral-700', 'border-pink-100', 'hover:border-pink-300');
+      });
+
+      // Find selected button
+      const activeBtn = Array.from(btns).find(btn => btn.getAttribute('onclick').includes(`'${catId}'`));
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'text-neutral-700', 'border-pink-100');
+        activeBtn.classList.add('bg-pink-500', 'text-white', 'border-pink-500', 'shadow-md');
+      }
+
+      // Re-render
+      renderServices();
+    }
+
+    // Render treatments cards
+    function renderServices() {
+      const grid = document.getElementById('services-grid');
+      grid.innerHTML = '';
+
+      const filtered = currentCategory === 'todos' 
+        ? SERVICES 
+        : SERVICES.filter(s => s.category === currentCategory);
+
+      filtered.forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'glass-panel rounded-3xl p-6 flex flex-col justify-between shadow-xs service-card group scale-enter';
+        
+        card.innerHTML = `
+          <div>
+            <!-- Header Badge and Duration -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-block px-3 py-1 rounded-full bg-pink-50 text-[10px] text-pink-600 font-bold uppercase tracking-widest border border-pink-100/50">
+                ${s.category}
+              </span>
+              <div class="flex items-center gap-1.5 text-neutral-500 text-xs font-semibold bg-neutral-50 px-2 py-1 rounded-lg">
+                <!-- Clock Icon -->
+                <svg class="w-3.5 h-3.5 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${s.duration}</span>
+              </div>
+            </div>
+
+            <!-- Name -->
+            <h3 class="font-sans text-lg font-medium text-neutral-900 group-hover:text-pink-500 transition-colors mt-1">
+              ${s.name}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-sm text-neutral-500 mt-2 line-clamp-3 leading-relaxed font-light">
+              ${s.description}
+            </p>
+          </div>
+
+          <!-- Bottom elements pricing and action button -->
+          <div class="mt-6 pt-4 border-t border-pink-100/50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-neutral-400 block font-semibold leading-tight">Valor</span>
+              <span class="font-sans text-xl font-medium text-neutral-900">$${s.price.toLocaleString('es-AR')}</span>
+            </div>
+
+            <button
+              onclick="selectServiceAndScroll('${s.id}')"
+              class="px-4 py-2 rounded-full bg-pink-50 hover:bg-pink-500 text-pink-600 hover:text-white text-xs font-bold transition-all border border-pink-100 cursor-pointer flex items-center gap-1"
+            >
+              <span>Reservar</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </button>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    // Populate the dropdown list for the reservation form
+    function populateServicesDropdown() {
+      const select = document.getElementById('serviceId');
+      select.innerHTML = '';
+      
+      SERVICES.forEach(s => {
+        const option = document.createElement('option');
+        option.value = s.id;
+        option.innerText = `${s.name} (${s.duration} - $${s.price.toLocaleString('es-AR')})`;
+        select.appendChild(option);
+      });
+    }
+
+    // Render Time picker
+    function renderTimeSlots() {
+      const container = document.getElementById('time-slots-container');
+      container.innerHTML = '';
+
+      TIME_SLOTS.forEach(slot => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `py-2 px-1.5 rounded-2xl text-xs font-semibold text-center transition-all border cursor-pointer`;
+        
+        if (selectedTimeSlot === slot) {
+          button.className += ' bg-pink-500 text-white border-pink-500 shadow-md shadow-pink-100/50';
+        } else {
+          button.className += ' bg-white text-neutral-700 border-pink-100 hover:border-pink-200 hover:bg-pink-50/20';
+        }
+
+        button.innerText = `${slot} hs`;
+        button.onclick = () => selectTimeSlot(slot);
+        
+        container.appendChild(button);
+      });
+
+      document.getElementById('selected-time').value = selectedTimeSlot;
+    }
+
+    function selectTimeSlot(slot) {
+      selectedTimeSlot = slot;
+      renderTimeSlots();
+    }
+
+    // Handles picking a service from card and scrolling straight to form
+    function selectServiceAndScroll(serviceId) {
+      document.getElementById('serviceId').value = serviceId;
+      
+      // Scroll to turnos form smoothly
+      const turnosSection = document.getElementById('turnos');
+      if (turnosSection) {
+        turnosSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Render persistent bookings history list in sidebar
+    function renderAppointments() {
+      const container = document.getElementById('appointments-history-list');
+      const badge = document.getElementById('appointment-count-badge');
+      
+      container.innerHTML = '';
+
+      if (appointments.length === 0) {
+        badge.classList.add('hidden');
+        container.innerHTML = `
+          <div class="text-center py-8 text-neutral-400 space-y-2 scale-enter">
+            <svg class="w-8 h-8 text-pink-200 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p class="text-xs font-medium">Aún no solicitaste ningún turno.</p>
+            <p class="text-[10px] text-neutral-400 max-w-[200px] mx-auto leading-normal">Los turnos que solicites se guardarán aquí para tu control personal.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Show badge
+      badge.innerText = appointments.length;
+      badge.classList.remove('hidden');
+
+      // Sort newest first
+      const sorted = [...appointments].reverse();
+
+      sorted.forEach(apt => {
+        const item = document.createElement('div');
+        item.className = 'bg-white/85 rounded-2xl p-4 border border-pink-100/40 flex flex-col justify-between hover:border-pink-200/50 transition-colors scale-enter';
+        
+        item.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-semibold text-neutral-800 line-clamp-1 block">
+                ${apt.serviceName}
+              </span>
+              <button
+                onclick="deleteAppointment('${apt.id}')"
+                class="text-neutral-400 hover:text-pink-500 p-1 rounded transition-colors cursor-pointer"
+                title="Borrar de mi registro"
+              >
+                <!-- Trash Icon -->
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Date and time indicators -->
+            <div class="grid grid-cols-2 gap-2 mt-2 text-[11px] text-neutral-500">
+              <div class="flex items-center gap-1">
+                <!-- Calendar Icon -->
+                <svg class="w-3 h-3 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>${apt.date}</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <!-- Clock Icon -->
+                <svg class="w-3 h-3 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${apt.time} hs</span>
+              </div>
+            </div>
+
+            <div class="mt-2 text-[10px] text-neutral-400 font-light italic">
+              Solicitado por: ${apt.clientName}
+            </div>
+          </div>
+
+          <!-- WhatsApp Resend CTA -->
+          <div class="mt-3 pt-2.5 border-t border-pink-100/30 flex items-center justify-between">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 text-[9px] font-bold border border-amber-100/50">
+              Pendiente por Chat
+            </span>
+            <a
+              href="${getWhatsAppUrlForBooking(apt)}"
+              target="_blank"
+              rel="noreferrer"
+              class="btn-whatsapp-custom text-white text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-xs hover:shadow-sm transition-all cursor-pointer"
+            >
+              <span>Enviar WA</span>
+              <!-- Send Icon -->
+              <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+              </svg>
+            </a>
+          </div>
+        `;
+
+        container.appendChild(item);
+      });
+    }
+
+    // Generates a prefilled WhatsApp link with the specific booking information
+    function getWhatsAppUrlForBooking(apt) {
+      const message = `¡Hola Aura! Me gustaría solicitar el siguiente turno:%0A%0A` +
+        `🌸 *Tratamiento:* ${apt.serviceName}%0A` +
+        `👤 *Cliente:* ${apt.clientName}%0A` +
+        `📞 *Contacto:* ${apt.clientPhone}%0A` +
+        `📅 *Fecha:* ${apt.date}%0A` +
+        `⏰ *Horario:* ${apt.time} hs%0A` +
+        `💰 *Valor:* $${apt.price.toLocaleString('es-AR')}%0A` +
+        `${apt.notes ? `📝 *Notas:* ${apt.notes}%0A` : ''}%0A` +
+        `Quedo atenta a su confirmación. ¡Muchas gracias!`;
+        
+      return `https://wa.me/${BUSINESS_INFO.phone}?text=${message}`;
+    }
+
+    // Delete a booking from local storage
+    function deleteAppointment(id) {
+      if (confirm('¿Deseas eliminar este turno de tu historial local? (No cancelará turnos ya acordados por WhatsApp)')) {
+        appointments = appointments.filter(a => a.id !== id);
+        saveAppointmentsToStorage();
+        renderAppointments();
+      }
+    }
+
+    // Render Testimonials List
+    function renderReviews() {
+      const container = document.getElementById('reviews-grid');
+      container.innerHTML = '';
+
+      const allReviews = [...TESTIMONIALS, ...customReviews];
+
+      allReviews.forEach(rev => {
+        const item = document.createElement('div');
+        item.className = 'glass-panel p-6 rounded-3xl shadow-xs flex flex-col justify-between service-card scale-enter';
+        
+        // Stars generator
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          if (i <= rev.rating) {
+            starsHtml += `<svg class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>`;
+          } else {
+            starsHtml += `<svg class="w-4 h-4 text-neutral-200 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>`;
+          }
+        }
+
+        item.innerHTML = `
+          <div>
+            <!-- Stars -->
+            <div class="flex items-center gap-0.5 mb-3.5">
+              ${starsHtml}
+            </div>
+            
+            <!-- Comment text -->
+            <p class="text-sm text-neutral-600 italic leading-relaxed font-light">
+              "${rev.text}"
+            </p>
+          </div>
+
+          <!-- Bottom details -->
+          <div class="mt-6 pt-4 border-t border-pink-100/30 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-neutral-900 block">${rev.author}</span>
+              <span class="text-[10px] text-neutral-400">${rev.date}</span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-pink-300">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(item);
+      });
+    }
+
+    // Toggle Review Form collapsible state
+    function toggleAddReviewForm(show) {
+      const btnContainer = document.getElementById('add-review-btn-container');
+      const formContainer = document.getElementById('add-review-form-container');
+
+      if (show) {
+        btnContainer.classList.add('hidden');
+        formContainer.classList.remove('hidden');
+        // Scroll to review form smoothly
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        btnContainer.classList.remove('hidden');
+        formContainer.classList.add('hidden');
+        // Reset form
+        document.getElementById('review-form').reset();
+      }
+    }
+
+    // Handle Review form submission
+    document.getElementById('review-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const author = document.getElementById('reviewAuthor').value.trim();
+      const rating = Number(document.getElementById('reviewRating').value);
+      const text = document.getElementById('reviewText').value.trim();
+
+      if (!author || !text) return;
+
+      const newRev = {
+        id: 'user_r_' + Date.now(),
+        author,
+        rating,
+        text,
+        date: 'Reciente',
+      };
+
+      customReviews.push(newRev);
+      saveReviewsToStorage();
+      renderReviews();
+      toggleAddReviewForm(false);
+      alert('¡Muchas gracias por dejarnos tu reseña! Se guardó con éxito en tu navegador.');
+    });
+
+    // Render FAQs Accordion
+    function renderFaqs() {
+      const container = document.getElementById('faqs-container');
+      container.innerHTML = '';
+
+      FAQS.forEach((faq, idx) => {
+        const item = document.createElement('div');
+        item.className = 'border border-pink-100 rounded-2xl overflow-hidden bg-pink-50/20';
+        
+        item.innerHTML = `
+          <button
+            onclick="toggleFaq(${idx})"
+            id="faq-btn-${idx}"
+            class="w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-sans text-sm sm:text-base font-medium text-neutral-900 hover:bg-pink-50/40 transition-colors cursor-pointer"
+          >
+            <span>${faq.question}</span>
+            <span id="faq-icon-${idx}" class="text-neutral-400 shrink-0 transition-transform duration-200">
+              <!-- Chevron Down -->
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </button>
+          
+          <div 
+            id="faq-content-${idx}" 
+            class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white"
+          >
+            <div class="px-6 pb-5 pt-1 text-xs sm:text-sm text-neutral-500 font-light leading-relaxed">
+              ${faq.answer}
+            </div>
+          </div>
+        `;
+
+        container.appendChild(item);
+      });
+    }
+
+    // Toggle FAQ Collapse/Expand
+    function toggleFaq(index) {
+      const content = document.getElementById(`faq-content-${index}`);
+      const icon = document.getElementById(`faq-icon-${index}`);
+      
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+      // Collapse all first to keep it clean (accordion style)
+      for (let i = 0; i < FAQS.length; i++) {
+        const c = document.getElementById(`faq-content-${i}`);
+        const ic = document.getElementById(`faq-icon-${i}`);
+        if (c) c.style.maxHeight = '0px';
+        if (ic) ic.style.transform = 'rotate(0deg)';
+      }
+
+      // If it wasn't open, open it
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // 4. BOOKING FORM SUBMISSION
+    document.getElementById('appointment-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const serviceId = document.getElementById('serviceId').value;
+      const date = document.getElementById('date').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      if (!name || !phone || !serviceId || !date || !selectedTimeSlot) {
+        alert('Por favor, completa todos los campos requeridos (*)');
+        return;
+      }
+
+      // Find selected service info
+      const service = SERVICES.find(s => s.id === serviceId);
+      if (!service) return;
+
+      const formattedDate = formatDateDisplay(date);
+
+      // Create new appointment object
+      const newBooking = {
+        id: 'aura_apt_' + Date.now(),
+        clientName: name,
+        clientPhone: phone,
+        serviceId: service.id,
+        serviceName: service.name,
+        price: service.price,
+        date: formattedDate,
+        time: selectedTimeSlot,
+        notes: notes,
+      };
+
+      // Save in state & localStorage
+      appointments.push(newBooking);
+      saveAppointmentsToStorage();
+
+      // Refresh recent bookings list in sidebar
+      renderAppointments();
+
+      // Open Confirmation Modal with prefilled details
+      openConfirmationModal(newBooking);
+    });
+
+    // Confirmation Modal Controllers
+    function openConfirmationModal(booking) {
+      document.getElementById('modal-service').innerText = booking.serviceName;
+      document.getElementById('modal-name').innerText = booking.clientName;
+      document.getElementById('modal-datetime').innerText = `${booking.date} a las ${booking.time} hs`;
+      document.getElementById('modal-price').innerText = `$${booking.price.toLocaleString('es-AR')}`;
+      
+      // Update whatsapp button link
+      const whatsappBtn = document.getElementById('modal-whatsapp-btn');
+      whatsappBtn.href = getWhatsAppUrlForBooking(booking);
+
+      // Show container
+      const modal = document.getElementById('modal-container');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // block scrolling
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal-container');
+      modal.classList.add('hidden');
+      document.body.style.overflow = ''; // restore scrolling
+      
+      // Reset form but keep name & phone for usability in next booking!
+      document.getElementById('notes').value = '';
+    }
+  </script>
+</body>
+</html>
